@@ -1,6 +1,45 @@
+
+<!doctype html>
+
+<html>
+<head>
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'disks/style.css' %}">
+    
 <h1>{{ album.title }}</h1>
-<ul>
-{% for track in album.track_set.all %}
-    <li>{{ track.name }}</li>
-{% endfor %}
-</ul>
+</head>
+
+<body>
+
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+</style>
+
+<table>
+    <tr>
+        <th>Nom de la piste</th>
+        <th>Compositeur</th>
+        <th>Durée de la piste (milliseconds)</th>
+        <th>Poids de la piste (bytes)</th>
+        <th>Coût de la piste</th>
+    </tr>
+    {% for track in album.track_set.all %}
+        <tr>
+            <td>{{ track.name }}</td>
+            <td>{{ track.composer }}</td>
+            <td>{{ track.milliseconds }}</td>
+            <td>{{ track.bytes }}</td>
+            <td>{{ track.unitPrice }}</td>
+        </tr>
+    {% endfor %}
+
+</table>
+
+
+</body>
+</html>
